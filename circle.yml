@@ -15,6 +15,6 @@ test:
        PROVISIONING_PROFILE=
        -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
        -sdk iphonesimulator
-       -workspace AutoLayout-Swift.xcworkspace
-       -scheme "AutoLayout-Swift"
+       -workspace AutoLayoutDSL-Swift.xcworkspace
+       -scheme "AutoLayoutDSL-Swift"
        build build-tests run-tests
