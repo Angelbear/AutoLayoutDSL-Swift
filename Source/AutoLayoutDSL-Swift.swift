@@ -152,13 +152,30 @@ extension UIView {
         }
     }
     
-    //TODO: 根据需要添加别的Attribute的属性
+    var leading: NSLayoutConstraintBuilder.Component {
+        get {
+            return attribute(.Leading)
+        }
+    }
+    
+    var trailing: NSLayoutConstraintBuilder.Component {
+        get {
+            return attribute(.Trailing)
+        }
+    }
+    
+    var baseline: NSLayoutConstraintBuilder.Component {
+        get {
+            return attribute(.Baseline)
+        }
+    }
+    
+    //TODO: add other iOS 8 only attributes and limit with api version when Swift 1.2 releases 
 }
 
-//生成NSLayoutConstraint的快捷操作符
-//使用方法
+// Usage
 // sourceView.sourceAttribute = destinationView.destinationAttribute (*|/) multiplier (+|-) constant
-// * 可以支持嵌套，嵌套的时候会按照+-x÷的优先级重新计算系数和常数
+// * Support chain operions and will follow operation precedence to re-calculate multipliers and constaints
 func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
     var builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
