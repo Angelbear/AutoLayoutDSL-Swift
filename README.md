@@ -8,7 +8,7 @@ AutoLayoutDSL-Swift is a straightforward swift DSL/extension for more convinient
 
 ## Requirements
 
-- iOS 7.0+ / Mac OS X 10.9+
+- iOS 7.0+
 - Xcode 6.3
 
 ## Communication
