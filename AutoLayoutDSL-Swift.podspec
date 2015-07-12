@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "1.0.0"
   s.summary      = "A straightforward swift DSL/extension for more convinient auto layout management"
   s.homepage     = "https://github.com/Angelbear/AutoLayoutDSL-Swift"
-  s.license      = "MIT (example)"
+  s.license      = "MIT"
   s.author       = { "Yangyang Zhao" => "yangyang.zhao.thu@gmail.com" }
   s.source       = { :git => "https://github.com/Angelbear/AutoLayoutDSL-Swift.git", :tag => "1.0.0" }
   s.source_files = 'Source/*.swift'
