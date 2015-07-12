@@ -93,9 +93,9 @@ self.view => self.redView.left == self.view.left + 10
         => self.redView.height == 100
         
 // 4 NSLayoutConstraints were added 
-// First two constraints will be UILayoutPriorityRequired
-// Third constraint will be UILayoutPriorityDefaultHigh
-// Fourth two constraints will be UILayoutPriorityDefaultLow
+// First two constraints' priorities will be UILayoutPriorityRequired
+// Third constraint‘s priority will be UILayoutPriorityDefaultHigh
+// Fourth constraint' priority will be UILayoutPriorityDefaultLow
 self.view => self.redView.left == self.view.left + 10
         => self.redView.right == self.view.right - 10
         ~~> self.redView.top == self.view.top + 30
