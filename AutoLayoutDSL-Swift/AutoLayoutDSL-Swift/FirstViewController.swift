@@ -20,21 +20,21 @@ class FirstViewController: UIViewController {
         
         self.view.addSubview(self.redView)
         
-        self.redView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.redView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view => self.redView.left == self.view.left + 10
         => self.redView.right == self.view.right - 10
         => self.redView.top == self.view.top + 30
         => self.redView.height == 100
         
-        var redViewLabel = UILabel()
+        let redViewLabel = UILabel()
         redViewLabel.textColor = UIColor.blackColor()
         redViewLabel.numberOfLines = 0
         
         redViewLabel.text = "self.redView.left == self.view.left + 10\nself.redView.right == self.view.right - 10\nself.redView.top == self.view.top + 30\nself.redView.height == 100"
         
         self.redView.addSubview(redViewLabel)
-        redViewLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        redViewLabel.translatesAutoresizingMaskIntoConstraints = false
         self.redView => redViewLabel.centerX == self.redView.centerX
         => redViewLabel.centerY == self.redView.centerY
         => redViewLabel.left == self.redView.left + 10
@@ -45,14 +45,14 @@ class FirstViewController: UIViewController {
         
         self.view.addSubview(self.greenView)
         
-        self.greenView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.greenView.translatesAutoresizingMaskIntoConstraints = false
         
         self.yellowView = UIView()
         self.yellowView.backgroundColor = UIColor.yellowColor()
         
         self.view.addSubview(self.yellowView)
         
-        self.yellowView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.yellowView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view => self.greenView.width == self.yellowView.width * 2
         => self.greenView.left == self.view.left + 10
@@ -64,7 +64,7 @@ class FirstViewController: UIViewController {
         => self.yellowView.top == self.greenView.top
         
         
-        var greenViewLabel = UILabel()
+        let greenViewLabel = UILabel()
         greenViewLabel.textColor = UIColor.blackColor()
         greenViewLabel.numberOfLines = 0
         
@@ -72,13 +72,13 @@ class FirstViewController: UIViewController {
         
         self.greenView.addSubview(greenViewLabel)
         
-        greenViewLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        greenViewLabel.translatesAutoresizingMaskIntoConstraints = false
         self.greenView => greenViewLabel.centerX == self.greenView.centerX
             => greenViewLabel.centerY == self.greenView.centerY
             => greenViewLabel.left == self.greenView.left + 10
             => greenViewLabel.right == self.greenView.right - 10
         
-        var yellowViewLabel = UILabel()
+        let yellowViewLabel = UILabel()
         yellowViewLabel.textColor = UIColor.blackColor()
         yellowViewLabel.numberOfLines = 0
         
@@ -86,7 +86,7 @@ class FirstViewController: UIViewController {
         
         self.yellowView.addSubview(yellowViewLabel)
         
-        yellowViewLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        yellowViewLabel.translatesAutoresizingMaskIntoConstraints = false
         self.yellowView => yellowViewLabel.centerX == self.yellowView.centerX
             => yellowViewLabel.centerY == self.yellowView.centerY
             => yellowViewLabel.left == self.yellowView.left + 10

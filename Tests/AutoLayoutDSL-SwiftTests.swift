@@ -22,13 +22,15 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
     }
     
     func testForSimpleCase() {
-        var view = UIView()
-        view.frame = CGRectMake(0, 0, 100, 100)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        var view1 = UIView()
-        view1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let view1 = UIView()
+        view1.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(view1)
+        
+        view => view.height == 100
+            => view.width == 100
         
         view => view1.left == view.left
         => view1.right == view.right
@@ -42,13 +44,15 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
 
     
     func testForOperations() {
-        var view = UIView()
-        view.frame = CGRectMake(0, 0, 100, 100)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        var view1 = UIView()
-        view1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let view1 = UIView()
+        view1.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(view1)
+        
+        view => view.height == 100
+            => view.width == 100
         
         view => view1.left == view.left + 10
             => view1.top == view.top - 10
@@ -61,13 +65,15 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
     }
     
     func testPriorities() {
-        var view = UIView()
-        view.frame = CGRectMake(0, 0, 100, 100)
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        var view1 = UIView()
-        view1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let view1 = UIView()
+        view1.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(view1)
+        
+        view => view.height == 100
+            => view.width == 100
         
         view => view1.left == view.left + 10
             ~~> view1.top == view.top - 10
@@ -78,13 +84,15 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
         
         XCTAssertEqual(true, CGRectMake(10, -10, 300, 50) == view1.frame, "view1 should be (10, -10, 300, 50)")
         
-        for constraint: NSLayoutConstraint in view.constraints() as! [NSLayoutConstraint] {
-            if constraint.firstAttribute == .Top {
-                XCTAssertEqual(UILayoutPriorityDefaultHigh, constraint.priority, "~~> will set priority to UILayoutPriorityDefaultHigh")
-            } else if constraint.firstAttribute == .Height {
-                XCTAssertEqual(UILayoutPriorityDefaultLow, constraint.priority, "~~~> will set priority to UILayoutPriorityDefaultLow")
-            } else {
-                XCTAssertEqual(UILayoutPriorityRequired, constraint.priority, "=> will not change priority")
+        for constraint: NSLayoutConstraint in view.constraints {
+            if constraint.firstItem as! NSObject == view1 {
+                if constraint.firstAttribute == .Top {
+                    XCTAssertEqual(UILayoutPriorityDefaultHigh, constraint.priority, "~~> will set priority to UILayoutPriorityDefaultHigh")
+                } else if constraint.firstAttribute == .Height {
+                    XCTAssertEqual(UILayoutPriorityDefaultLow, constraint.priority, "~~~> will set priority to UILayoutPriorityDefaultLow")
+                } else {
+                    XCTAssertEqual(UILayoutPriorityRequired, constraint.priority, "=> will not change priority")
+                }
             }
         }
     }

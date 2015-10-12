@@ -19,7 +19,7 @@ class SecondViewController: UIViewController {
         
         self.view.addSubview(self.blackView)
         
-        self.blackView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.blackView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view => self.blackView.left == self.view.left + 10
         => self.blackView.right == self.view.right - 10
@@ -33,7 +33,7 @@ class SecondViewController: UIViewController {
         
         self.blackView.addSubview(self.whiteLabel)
         
-        self.whiteLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.whiteLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.blackView => self.whiteLabel.top == self.blackView.top + 10
         => self.whiteLabel.left == self.blackView.left + 10
@@ -41,12 +41,12 @@ class SecondViewController: UIViewController {
         ~~> self.whiteLabel.bottom == self.blackView.bottom - 10
         
         
-        var topMarginView = UIView()
+        let topMarginView = UIView()
         topMarginView.backgroundColor = UIColor.blackColor()
         
         self.view.addSubview(topMarginView)
         
-        topMarginView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        topMarginView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view => topMarginView.centerX == self.view.centerX
         => topMarginView.top == self.view.top
@@ -54,13 +54,13 @@ class SecondViewController: UIViewController {
         => topMarginView.width == 0
         
         
-        var bottomMarginView = UIView()
+        let bottomMarginView = UIView()
         
         bottomMarginView.backgroundColor = UIColor.blackColor()
         
         self.view.addSubview(bottomMarginView)
         
-        bottomMarginView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        bottomMarginView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view => bottomMarginView.centerX == self.view.centerX
         => bottomMarginView.top == self.blackView.bottom
