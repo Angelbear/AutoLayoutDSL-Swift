@@ -172,6 +172,8 @@
 		DD922BE61B5296C5005B4C4D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Angelbear;
 				TargetAttributes = {
