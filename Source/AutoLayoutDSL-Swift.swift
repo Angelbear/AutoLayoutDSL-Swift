@@ -176,7 +176,7 @@ extension UIView {
 // Usage
 // sourceView.sourceAttribute = destinationView.destinationAttribute (*|/) multiplier (+|-) constant
 // * Support chain operions and will follow operation precedence to re-calculate multipliers and constaints
-func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
+public func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = destinationComponent
@@ -184,7 +184,7 @@ func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: N
     return builder.build()
 }
 
-func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.Component) -> NSLayoutConstraint {
+public func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.Component) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: destinationComponent)
@@ -192,7 +192,7 @@ func == (component: NSLayoutConstraintBuilder.Component, destinationComponent: N
     return builder.build()
 }
 
-func == (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
+public func == (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant)
@@ -200,7 +200,7 @@ func == (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> N
     return builder.build()
 }
 
-func >= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
+public func >= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = destinationComponent
@@ -208,7 +208,7 @@ func >= (component: NSLayoutConstraintBuilder.Component, destinationComponent: N
     return builder.build()
 }
 
-func >= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.Component) -> NSLayoutConstraint {
+public func >= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.Component) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: destinationComponent)
@@ -216,7 +216,7 @@ func >= (component: NSLayoutConstraintBuilder.Component, destinationComponent: N
     return builder.build()
 }
 
-func >= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
+public func >= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant)
@@ -224,7 +224,7 @@ func >= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> N
     return builder.build()
 }
 
-func <= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
+public func <= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.DestinationComponent) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = destinationComponent
@@ -232,7 +232,7 @@ func <= (component: NSLayoutConstraintBuilder.Component, destinationComponent: N
     return builder.build()
 }
 
-func <= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.Component) -> NSLayoutConstraint {
+public func <= (component: NSLayoutConstraintBuilder.Component, destinationComponent: NSLayoutConstraintBuilder.Component) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: destinationComponent)
@@ -240,7 +240,7 @@ func <= (component: NSLayoutConstraintBuilder.Component, destinationComponent: N
     return builder.build()
 }
 
-func <= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
+public func <= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant)
@@ -248,35 +248,35 @@ func <= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> N
     return builder.build()
 }
 
-func * (component: NSLayoutConstraintBuilder.Component, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func * (component: NSLayoutConstraintBuilder.Component, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return NSLayoutConstraintBuilder.DestinationComponent(component: component).setMultiplier(multiplier)
 }
 
-func * (component: NSLayoutConstraintBuilder.DestinationComponent, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func * (component: NSLayoutConstraintBuilder.DestinationComponent, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return component.setMultiplier(component.multiplier * multiplier).setConstant(component.constant * multiplier)
 }
 
-func / (component: NSLayoutConstraintBuilder.Component, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func / (component: NSLayoutConstraintBuilder.Component, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return NSLayoutConstraintBuilder.DestinationComponent(component: component).setMultiplier( 1.0 / multiplier)
 }
 
-func / (component: NSLayoutConstraintBuilder.DestinationComponent, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func / (component: NSLayoutConstraintBuilder.DestinationComponent, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return component.setMultiplier(component.multiplier / multiplier).setConstant(component.constant / multiplier)
 }
 
-func + (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func + (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return NSLayoutConstraintBuilder.DestinationComponent(component: component).setConstant(constant)
 }
 
-func + (component: NSLayoutConstraintBuilder.DestinationComponent, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func + (component: NSLayoutConstraintBuilder.DestinationComponent, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return component.setConstant(component.constant + constant)
 }
 
-func - (component: NSLayoutConstraintBuilder.Component, contant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func - (component: NSLayoutConstraintBuilder.Component, contant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return NSLayoutConstraintBuilder.DestinationComponent(component: component).setConstant(-contant)
 }
 
-func - (component: NSLayoutConstraintBuilder.DestinationComponent, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
+public func - (component: NSLayoutConstraintBuilder.DestinationComponent, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
     return component.setConstant(component.constant - constant)
 }
 
