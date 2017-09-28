@@ -39,7 +39,7 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
         
         view.layoutIfNeeded()
         
-        XCTAssertEqual(true, view.frame == view1.frame, "view1 should have same frame as view")
+        XCTAssertEqual(true, CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height) == view1.frame, "view1 should have same frame as view")
     }
 
     
@@ -61,7 +61,7 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
         
         view.layoutIfNeeded()
         
-        XCTAssertEqual(true, CGRectMake(10, -10, 300, 50) == view1.frame, "view1 should be (10, -10, 300, 50)")
+        XCTAssertEqual(true, CGRect(x: 10, y: -10, width: 300, height: 50) == view1.frame, "view1 should be (10, -10, 300, 50)")
     }
     
     func testPriorities() {
@@ -82,13 +82,13 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
         
         view.layoutIfNeeded()
         
-        XCTAssertEqual(true, CGRectMake(10, -10, 300, 50) == view1.frame, "view1 should be (10, -10, 300, 50)")
+        XCTAssertEqual(true, CGRect(x: 10, y: -10, width: 300, height: 50) == view1.frame, "view1 should be (10, -10, 300, 50)")
         
         for constraint: NSLayoutConstraint in view.constraints {
             if constraint.firstItem as! NSObject == view1 {
-                if constraint.firstAttribute == .Top {
+                if constraint.firstAttribute == .top {
                     XCTAssertEqual(UILayoutPriorityDefaultHigh, constraint.priority, "~~> will set priority to UILayoutPriorityDefaultHigh")
-                } else if constraint.firstAttribute == .Height {
+                } else if constraint.firstAttribute == .height {
                     XCTAssertEqual(UILayoutPriorityDefaultLow, constraint.priority, "~~~> will set priority to UILayoutPriorityDefaultLow")
                 } else {
                     XCTAssertEqual(UILayoutPriorityRequired, constraint.priority, "=> will not change priority")
@@ -101,7 +101,7 @@ class AutoLayoutDSL_SwiftTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
         }
     }

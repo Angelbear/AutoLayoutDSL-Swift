@@ -22,7 +22,7 @@ extension NSLayoutConstraint {
 public class NSLayoutConstraintBuilder {
     
     public class DestinationComponent {
-        private var component: Component!
+        var component: Component!
         var multiplier: CGFloat = 1
         var constant: CGFloat = 0
         
@@ -42,8 +42,8 @@ public class NSLayoutConstraintBuilder {
     }
     
     public class Component {
-        private var view: UIView?
-        private var attribute: NSLayoutAttribute!
+        var view: UIView?
+        var attribute: NSLayoutAttribute!
         
         public init(view: UIView?, attribute: NSLayoutAttribute) {
             self.view = view
@@ -59,35 +59,34 @@ public class NSLayoutConstraintBuilder {
         }
         
         public func equal(component: DestinationComponent) -> NSLayoutConstraintBuilder {
-            return createBuilder(component, relation: .Equal)
+            return createBuilder(component: component, relation: .equal)
         }
         
         public func greaterThanOrEqual(component: DestinationComponent) -> NSLayoutConstraintBuilder {
-            return createBuilder(component, relation: .GreaterThanOrEqual)
+            return createBuilder(component: component, relation: .greaterThanOrEqual)
         }
         
         public func lessThanOrEqual(component: DestinationComponent) -> NSLayoutConstraintBuilder {
-            return createBuilder(component, relation: .LessThanOrEqual)
+            return createBuilder(component: component, relation: .lessThanOrEqual)
         }
         
         public func equal(constant: CGFloat) -> NSLayoutConstraintBuilder {
-            return createBuilder(DestinationComponent(component: Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant), relation: .Equal)
+            return createBuilder(component: DestinationComponent(component: Component(view: nil, attribute: .notAnAttribute)).setConstant(constant: constant), relation: .equal)
         }
         
         public func greaterThanOrEqual(constant: CGFloat) -> NSLayoutConstraintBuilder {
-            return createBuilder(DestinationComponent(component: Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant), relation: .GreaterThanOrEqual)
+            return createBuilder(component: DestinationComponent(component: Component(view: nil, attribute: .notAnAttribute)).setConstant(constant: constant), relation: .greaterThanOrEqual)
         }
         
         public func lessThanOrEqual(constant: CGFloat) -> NSLayoutConstraintBuilder {
-            return createBuilder(DestinationComponent(component: Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant), relation: .LessThanOrEqual)
+            return createBuilder(component: DestinationComponent(component: Component(view: nil, attribute: .notAnAttribute)).setConstant(constant: constant), relation: .lessThanOrEqual)
         }
     }
     
-    private var sourceComponent: Component!
-    private var relation: NSLayoutRelation!
-    private var destinationComponent: DestinationComponent!
-    private var layoutPrority: UILayoutPriority = UILayoutPriorityRequired
-
+    var sourceComponent: Component!
+    var relation: NSLayoutRelation!
+    var destinationComponent: DestinationComponent!
+    var layoutPrority: UILayoutPriority = UILayoutPriorityRequired
     
     public func setPriority(priority: UILayoutPriority) -> Self {
         self.layoutPrority = priority
@@ -106,71 +105,69 @@ extension UIView {
     
     public var left: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Left)
+            return attribute(attribute: .left)
         }
     }
     
     public var right: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Right)
+            return attribute(attribute: .right)
         }
     }
     
     public var top: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Top)
+            return attribute(attribute: .top)
         }
     }
     
     public var bottom: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Bottom)
+            return attribute(attribute: .bottom)
         }
     }
     
     public var centerX: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.CenterX)
+            return attribute(attribute: .centerX)
         }
     }
     
     public var centerY: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.CenterY)
+            return attribute(attribute: .centerY)
         }
     }
     
     public var width: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Width)
+            return attribute(attribute: .width)
         }
     }
     
     public var height: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Height)
+            return attribute(attribute: .height)
         }
     }
     
     public var leading: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Leading)
+            return attribute(attribute: .leading)
         }
     }
     
     public var trailing: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Trailing)
+            return attribute(attribute: .trailing)
         }
     }
     
     public var baseline: NSLayoutConstraintBuilder.Component {
         get {
-            return attribute(.Baseline)
+            return attribute(attribute: .lastBaseline)
         }
     }
-    
-    //TODO: add other iOS 8 only attributes and limit with api version when Swift 1.2 releases 
 }
 
 // Usage
@@ -180,7 +177,7 @@ public func == (component: NSLayoutConstraintBuilder.Component, destinationCompo
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = destinationComponent
-    builder.relation = .Equal
+    builder.relation = .equal
     return builder.build()
 }
 
@@ -188,15 +185,15 @@ public func == (component: NSLayoutConstraintBuilder.Component, destinationCompo
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: destinationComponent)
-    builder.relation = .Equal
+    builder.relation = .equal
     return builder.build()
 }
 
 public func == (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
-    builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant)
-    builder.relation = .Equal
+    builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .notAnAttribute)).setConstant(constant: constant)
+    builder.relation = .equal
     return builder.build()
 }
 
@@ -204,7 +201,7 @@ public func >= (component: NSLayoutConstraintBuilder.Component, destinationCompo
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = destinationComponent
-    builder.relation = .GreaterThanOrEqual
+    builder.relation = .greaterThanOrEqual
     return builder.build()
 }
 
@@ -212,15 +209,15 @@ public func >= (component: NSLayoutConstraintBuilder.Component, destinationCompo
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: destinationComponent)
-    builder.relation = .GreaterThanOrEqual
+    builder.relation = .greaterThanOrEqual
     return builder.build()
 }
 
 public func >= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
-    builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant)
-    builder.relation = .GreaterThanOrEqual
+    builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .notAnAttribute)).setConstant(constant: constant)
+    builder.relation = .greaterThanOrEqual
     return builder.build()
 }
 
@@ -228,7 +225,7 @@ public func <= (component: NSLayoutConstraintBuilder.Component, destinationCompo
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = destinationComponent
-    builder.relation = .LessThanOrEqual
+    builder.relation = .lessThanOrEqual
     return builder.build()
 }
 
@@ -236,48 +233,53 @@ public func <= (component: NSLayoutConstraintBuilder.Component, destinationCompo
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
     builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: destinationComponent)
-    builder.relation = .LessThanOrEqual
+    builder.relation = .lessThanOrEqual
     return builder.build()
 }
 
 public func <= (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraint {
     let builder =  NSLayoutConstraintBuilder()
     builder.sourceComponent = component
-    builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .NotAnAttribute)).setConstant(constant)
-    builder.relation = .LessThanOrEqual
+    builder.destinationComponent = NSLayoutConstraintBuilder.DestinationComponent(component: NSLayoutConstraintBuilder.Component(view: nil, attribute: .notAnAttribute)).setConstant(constant: constant)
+    builder.relation = .lessThanOrEqual
     return builder.build()
 }
 
 public func * (component: NSLayoutConstraintBuilder.Component, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setMultiplier(multiplier)
+    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setMultiplier(multiplier: multiplier)
 }
 
 public func * (component: NSLayoutConstraintBuilder.DestinationComponent, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return component.setMultiplier(component.multiplier * multiplier).setConstant(component.constant * multiplier)
+    return component.setMultiplier(multiplier: component.multiplier * multiplier).setConstant(constant: component.constant * multiplier)
 }
 
 public func / (component: NSLayoutConstraintBuilder.Component, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setMultiplier( 1.0 / multiplier)
+    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setMultiplier(multiplier:  1.0 / multiplier)
 }
 
 public func / (component: NSLayoutConstraintBuilder.DestinationComponent, multiplier: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return component.setMultiplier(component.multiplier / multiplier).setConstant(component.constant / multiplier)
+    return component.setMultiplier(multiplier: component.multiplier / multiplier).setConstant(constant: component.constant / multiplier)
 }
 
 public func + (component: NSLayoutConstraintBuilder.Component, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setConstant(constant)
+    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setConstant(constant: constant)
 }
 
 public func + (component: NSLayoutConstraintBuilder.DestinationComponent, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return component.setConstant(component.constant + constant)
+    return component.setConstant(constant: component.constant + constant)
 }
 
 public func - (component: NSLayoutConstraintBuilder.Component, contant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setConstant(-contant)
+    return NSLayoutConstraintBuilder.DestinationComponent(component: component).setConstant(constant: -contant)
 }
 
 public func - (component: NSLayoutConstraintBuilder.DestinationComponent, constant: CGFloat) -> NSLayoutConstraintBuilder.DestinationComponent {
-    return component.setConstant(component.constant - constant)
+    return component.setConstant(constant: component.constant - constant)
+}
+
+precedencegroup AssignConstraint {
+    associativity: left
+    lowerThan: ComparisonPrecedence
 }
 
 // Help Function for adding NSLayoutConstaint的
@@ -287,20 +289,20 @@ public func - (component: NSLayoutConstraintBuilder.DestinationComponent, consta
 // Operations will return view itself
 // we set precedence ot 120，so that it will be lower than ==, <=, >=
 // reference swift operation precedence from http://nshipster.com/swift-operators/
-infix operator => { associativity left precedence 120 }
+infix operator => : AssignConstraint
 public func => (view: UIView, constaint: NSLayoutConstraint) -> UIView {
     view.addConstraint(constaint)
     return view
 }
 
-infix operator ~~> { associativity left precedence 120 }
+infix operator ~~> : AssignConstraint
 public func ~~> (view: UIView, constaint: NSLayoutConstraint) -> UIView  {
     constaint.priority = UILayoutPriorityDefaultHigh
     view.addConstraint(constaint)
     return view
 }
 
-infix operator ~~~> { associativity left precedence 120 }
+infix operator ~~~> : AssignConstraint
 public func ~~~> (view: UIView, constaint: NSLayoutConstraint) -> UIView  {
     constaint.priority = UILayoutPriorityDefaultLow
     view.addConstraint(constaint)

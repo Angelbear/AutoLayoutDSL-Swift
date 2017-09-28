@@ -16,7 +16,7 @@ class FirstViewController: UIViewController {
     
     private func initSubViews() {
         self.redView = UIView()
-        self.redView.backgroundColor = UIColor.redColor()
+        self.redView.backgroundColor = UIColor.red
         
         self.view.addSubview(self.redView)
         
@@ -28,27 +28,27 @@ class FirstViewController: UIViewController {
         => self.redView.height == 100
         
         let redViewLabel = UILabel()
-        redViewLabel.textColor = UIColor.blackColor()
+        redViewLabel.textColor = UIColor.black
         redViewLabel.numberOfLines = 0
         
         redViewLabel.text = "self.redView.left == self.view.left + 10\nself.redView.right == self.view.right - 10\nself.redView.top == self.view.top + 30\nself.redView.height == 100"
         
         self.redView.addSubview(redViewLabel)
         redViewLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.redView => redViewLabel.centerX == self.redView.centerX
+        self.redView => (redViewLabel.centerX == self.redView.centerX)
         => redViewLabel.centerY == self.redView.centerY
         => redViewLabel.left == self.redView.left + 10
         => redViewLabel.right == self.redView.right - 10
         
         self.greenView = UIView()
-        self.greenView.backgroundColor = UIColor.greenColor()
+        self.greenView.backgroundColor = UIColor.green
         
         self.view.addSubview(self.greenView)
         
         self.greenView.translatesAutoresizingMaskIntoConstraints = false
         
         self.yellowView = UIView()
-        self.yellowView.backgroundColor = UIColor.yellowColor()
+        self.yellowView.backgroundColor = UIColor.yellow
         
         self.view.addSubview(self.yellowView)
         
@@ -65,7 +65,7 @@ class FirstViewController: UIViewController {
         
         
         let greenViewLabel = UILabel()
-        greenViewLabel.textColor = UIColor.blackColor()
+        greenViewLabel.textColor = UIColor.black
         greenViewLabel.numberOfLines = 0
         
         greenViewLabel.text = "self.greenView.width == self.yellowView.width * 2\nself.greenView.left == self.view.left + 10\nself.greenView.top == self.redView.bottom + 10\nself.greenView.right == self.yellowView.left - 20\nself.greenView.bottom == self.view.bottom - 60"
@@ -79,7 +79,7 @@ class FirstViewController: UIViewController {
             => greenViewLabel.right == self.greenView.right - 10
         
         let yellowViewLabel = UILabel()
-        yellowViewLabel.textColor = UIColor.blackColor()
+        yellowViewLabel.textColor = UIColor.black
         yellowViewLabel.numberOfLines = 0
         
         yellowViewLabel.text = "self.yellowView.height == self.greenView.height\nself.yellowView.right == self.view.right - 10\nself.yellowView.top == self.greenView.top"
